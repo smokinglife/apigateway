@@ -6,6 +6,7 @@
     "grpc",
     "grpc-service"
   ],
+  "homepage": "https://github.com/smokinglife/apigateway",
   "authors": [
     {
       "name": "smokinglife",
