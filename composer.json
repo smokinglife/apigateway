@@ -4,16 +4,7 @@
   "license": "Apache-2.0",
   "autoload": {
     "psr-4": {
-      "CouponSrv\\": "src/CouponSrv",
-      "CampaignSrv\\": "src/CampaignSrv",
-      "InfoSrv\\": "src/InfoSrv",
-      "MallSrv\\": "src/MallSrv",
-      "MarketSrv\\": "src/MarketSrv",
-      "MemberSrv\\": "src/MemberSrv",
-      "UtilitySrv\\": "src/UtilitySrv",
-      "SalesSrv\\": "src/SalesSrv",
-      "BookingSrv\\": "src/BookingSrv",
-      "GPBMetadata\\": "src/GPBMetadata"
+      "UtilitySrv\\": "src/UtilitySrv"
     },
     "files": []
   }
