@@ -1,0 +1,74 @@
+/**
+ * @todo 配置
+ * @author modiarts
+ * @date 2022-01-04
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service Settings {
+    //列表
+    rpc lists (SettingListsRequest) returns (SettingListsResponse) {}
+
+    //详情
+    rpc detail (SettingDetailRequest) returns (SettingDetailResponse) {}
+
+    //列表
+    rpc listsOpen (SettingListsRequest) returns (SettingListsResponse) {}
+
+    //详情
+    rpc detailOpen (SettingDetailRequest) returns (SettingDetailResponse) {}      
+}
+
+//获取列表所需参数
+message SettingListsRequest {
+    string type = 1;
+    int64 brand_id = 2;
+    string brand_code = 3;
+    int64 store_id = 4;
+    string branch_code = 5;
+}
+
+//获取列表响应字段
+message SettingListsResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    repeated Setting data = 4;
+    string request_id = 5;
+}
+
+//配置项field
+message Setting {
+    int64 id = 1;
+    string type = 2;
+    int64 brand_id = 3;
+    string brand_code = 4;
+    int64 store_id = 5;
+    string branch_code = 6;
+    string content = 7;
+    int32 is_private = 8;
+    string title = 9;
+}
+
+//获取详情所需参数
+message SettingDetailRequest {
+    string type = 1;
+    int64 brand_id = 2;
+    string brand_code = 3;
+    int64 store_id = 4;
+    string branch_code = 5;
+    string ident = 6;
+}
+
+//获取详情响应字段
+message SettingDetailResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    Setting data = 4;
+    string request_id = 5;
+}

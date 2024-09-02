@@ -1,0 +1,58 @@
+/**
+ * @todo 发送验证码
+ * @author modiarts
+ * @date 2023-06-07
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service mobile {
+  //发送验证码
+  rpc sendCode (MobilesendCodeRequest) returns (MobilesendCodeResponse) {}
+  //获取世界各国电话区号国际代码
+  rpc getInternationalCodeList (MobileGetInternationalCodeListRequest) returns (MobileGetInternationalCodeListResponse){}
+}
+
+//发送验证码请求参数
+message MobilesendCodeRequest {
+  string country_code = 1; //国家或地区代码
+  string mobile = 2; //手机号
+  string type = 3;//场景类型 rep注册
+}
+
+//发送验证码响应字段
+message MobilesendCodeResponse {
+  int32 code = 1;             //响应码 1正常
+  string message = 2;         //响应message
+  string time = 3;
+  Mobile data = 4;   //响应data
+  string request_id = 5;
+}
+
+//详情响应字段data
+message Mobile {
+  string token = 1; //令牌
+}
+
+//获取世界各国电话区号国际代码请求参数
+message MobileGetInternationalCodeListRequest {
+}
+//获取世界各国电话区号国际代码响应
+message MobileGetInternationalCodeListResponse {
+  int64 code = 1; //响应码
+  string message = 2; //响应message
+  string time = 3;    //请求时间
+  repeated MobileGetInternationalCodeListData data = 4;    //data
+  string request_id = 5;  //请求ID
+}
+
+//获取世界各国电话区号国际代码响应data
+message MobileGetInternationalCodeListData {
+  string areaName = 1; //名称
+  string checkKey = 2; //正则表达式
+  string code = 3; //国家代码
+  string domainAbbreviation = 4;//缩写
+}

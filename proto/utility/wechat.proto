@@ -1,0 +1,114 @@
+/**
+ * @todo 微信服务相关
+ * @author modiarts
+ * @date 2022-03-06
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service wechat {
+    //获取access_token
+    rpc getAccessToken (GetAccessTokenRequest) returns (GetAccessTokenResponse) {}
+
+    //获取ApiTicket
+    rpc getApiTicket (GetApiTicketRequest) returns (GetApiTicketResponse) {}
+
+    //获取JsApi
+    rpc getJsApi (GetJsApiRequest) returns (GetJsApiResponse) {}
+
+    //获取企业微信应用access_token
+    rpc getWorkAccessToken (GetWorkAccessTokenRequest) returns (GetWorkAccessTokenResponse) {}
+}
+
+//获取jsapi请求参数
+message GetJsApiRequest {
+    string url = 1; //url
+}
+
+//获取jsapi详情字段
+message GetJsApiResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    GetJsApiResponseData data = 4;
+    string request_id = 5;
+}
+
+//获取jsapi详情字段data
+message GetJsApiResponseData {
+    string appId = 1;   //公众号APPID
+    string timestamp = 2;    //时间戳
+    string nonceStr = 3;    //随机串
+    string signature = 4;   //签名
+    string url = 5; //url
+}
+
+//获取access_token请求参数
+message GetAccessTokenRequest {
+    string type = 1;
+}
+
+
+//获取access_token响应字段
+message GetAccessTokenResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    GetAccessTokenResponseData data = 4;
+    string request_id = 5;
+}
+
+//获取access_token响应字段data
+message GetAccessTokenResponseData {
+    string access_token = 1;
+    string expire_time = 2;
+    string expire_time_str = 3;
+}
+
+//获取ApiTicket
+message GetApiTicketRequest {
+    string type = 1;
+}
+
+
+//获取ApiTicket响应字段
+message GetApiTicketResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    GetApiTicketResponseData data = 4;
+    string request_id = 5;
+}
+
+//获取ApiTicket响应字段data
+message GetApiTicketResponseData {
+    string api_ticket = 1;
+    string expire_time = 2;
+    string expire_time_str = 3;
+}
+
+//获取ApiTicket
+message GetWorkAccessTokenRequest {
+    string id = 1;
+    string secret = 2;
+    int32 reset = 3;
+}
+
+
+//获取ApiTicket响应字段
+message GetWorkAccessTokenResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    GetWorkAccessTokenResponseData data = 4;
+    string request_id = 5;
+}
+
+//获取ApiTicket响应字段data
+message GetWorkAccessTokenResponseData {
+    string access_token = 1;
+    string expires_in = 2;
+}

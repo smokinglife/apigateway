@@ -1,0 +1,37 @@
+/**
+ * @todo 支付方式
+ * @author modiarts
+ * @date 2022-01-26
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service Payments {
+    //获取列表
+    rpc lists (PaymentListsRequest) returns (PaymentListsResponse) {}
+}
+
+//获取列表请求参数
+message PaymentListsRequest {
+
+}
+
+//获取列表响应字段
+message PaymentListsResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+
+    repeated Payment data = 4;
+    string request_id = 5;
+}
+
+//支付方式
+message Payment {
+    int32 id = 1;
+    string name = 2;
+    string code = 3;
+}

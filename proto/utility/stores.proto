@@ -1,0 +1,160 @@
+/**
+ * @todo 门店
+ * @author modiarts
+ * @date 2021-12-31
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service Stores {
+    //获取列表
+    rpc lists (StoreListsRequest) returns (StoreListsResponse) {}
+
+    //获取详情
+    rpc detail (StoreDetailRequest) returns (StoreDetailResponse) {}
+
+    //获取门店所在城市列表
+    rpc getCitys (GetCitysRequest) returns (GetCitysResponse) {}
+
+}
+
+//获取门店所在城市列表请求参数
+message GetCitysRequest {
+    int32 brand_id = 1; //品牌ID
+    int32 status = 2;   //状态 0全部 1已启用 2未启用
+}
+
+//获取列表响应字段
+message GetCitysResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    repeated StoreCity data = 4;
+    string request_id = 5;
+}
+
+//门店城市
+message StoreCity {
+    int32 city_id = 1;  //城市ID
+    string city_name = 2;   //城市名称
+}
+
+//获取列表所需参数
+message StoreListsRequest {
+    int64 brand_id = 1;
+    string brand_code = 2;
+    int32 status = 3;   //状态 0全部 1已启用 2未启用
+    int32 status_nearby = 4; //是否启用附近门店 1是 2否
+    int32 city_id = 5;  //城市ID
+    int32 open_all_hour = 6; //是否24小时营业，1是，2否
+    int32 starbucks_reservetm = 7;//1是，2否
+    int32 teavanatm_bar = 8;//1是，2否
+    int32 serve_nitro_coffee = 9;//1是，2否
+    int32 wifi = 10;//1是，2否
+    int32 dinein_availa = 11;//1是，2否
+}
+
+//获取列表响应字段
+message StoreListsResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    repeated Store data = 4;
+    string request_id = 5;
+}
+
+//品牌对象
+message Store {
+    int64 id = 1;
+    int64 brand_id = 2;
+    string pos_branch_id = 3;
+    string branch_name = 4;
+    string chinese_name = 5;
+    string company_code = 6;
+    string division_code = 7;
+    string division_name = 8;
+    string sub_division_code = 9;
+    string sub_division_name = 10;
+    string group1 = 11;
+    string group2 = 12;
+    string tradezone = 13;
+    string geo = 14;
+    string opening_date = 15;
+    string closing_date = 16;
+    string opening_closing_flag = 17;
+    string name = 18;
+    int64 area_id = 19;
+    string area_name = 20;
+    int64 province_id = 21;
+    string province_name = 22;
+    int64 city_id = 23;
+    string city_name = 24;
+    int64 district_id = 25;
+    string district_name = 26;
+    string address = 27;
+    string lng = 28;
+    string lat = 29;
+    repeated Business business = 30;
+    string telephone = 31;
+    repeated string imgs = 32;
+    string create_time = 33;
+    string update_time = 34;
+    string brand_code = 35;
+    string branch_code = 36;
+    string desc = 37;
+    int32 status = 38;
+    int32 status_nearby = 39;
+    string meituan_id = 40;  //美团门店ID
+    string mwbyd_link = 41;  //美味不用等链接
+    int32 take_out_store = 42 ;//外卖门店列表1显示，2关闭
+    int32 order_store = 43 ;//点餐门店列表1显示，2关闭
+    int32 navigation_store = 44 ;//导航1显示，2关闭
+    int32 active_jump_store = 45;//活动跳转1显示，2关闭
+    int32 order_button_store = 46;//点餐按钮1显示，2关闭
+    int32 seat_number = 47; //座位数
+    string subtitle = 48; //副标题
+    string new_business = 49; //新模式下的时间设置
+    int32 open_all_hour = 50; //是否24小时营业，1是，2否
+    int32 starbucks_reservetm = 51;//1是，2否
+    int32 teavanatm_bar = 52;//1是，2否
+    int32 serve_nitro_coffee = 53;//1是，2否
+    int32 wifi = 54;//1是，2否
+    int32 dinein_availa = 55;//1是，2否
+    string address_en = 56;//英文地址
+    int32 is_allow = 57;//允许云厨房店取1是0否
+    string red_book_poi_id = 58;    //小红书门店poi_id
+    string douyin_poi_id = 59;    //抖音门店poi_id
+
+    string booking_link = 60;   //订座链接
+}
+
+
+//营业时间
+message Business {
+    int32 wstart = 1;   //周几（开始）
+    int32 wend = 2;     //周几（结束）
+    string w_m_start = 3;   //上午几点（开始），如：09:00
+    string w_m_end = 4;     //上午几点（结束），如：12:00
+    string w_l_start = 5;   //下午几点（开始），如：15:00
+    string w_l_end = 6;     //下午几点（结束），如：20:00
+}
+
+//获取详情所需参数
+message StoreDetailRequest {
+    int64 store_id = 1;
+    string branch_code = 2;
+    int32 pos_branch_id = 3;
+    int32 is_aggregated_brand = 4;  //是否聚合类品牌 0否 1是
+}
+
+//获取详情响应字段
+message StoreDetailResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    Store data = 4;
+    string request_id = 5;
+}

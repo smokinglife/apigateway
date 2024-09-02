@@ -1,0 +1,35 @@
+/**
+ * @todo 品牌分类
+ * @author modiarts
+ * @date 2023-12-04
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service brand_cate {
+  //列表
+  rpc lists (BrandCateListsRequest) returns (BrandCateListsResponse) {}
+}
+
+//列表请求参数
+message BrandCateListsRequest {
+
+}
+
+//列表详情字段
+message BrandCateListsResponse {
+  int64 code = 1;
+  string message = 2;
+  string time = 3;
+  repeated BrandCate data = 4;
+  string request_id = 5;
+}
+
+message BrandCate {
+  int32 id = 1; //ID
+  string name = 2;  //名称
+  string logo = 3;  //logo
+}

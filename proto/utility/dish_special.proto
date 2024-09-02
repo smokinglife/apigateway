@@ -1,0 +1,37 @@
+/**
+ * @todo 招牌菜
+ * @author modiarts
+ * @date 2023-12-06
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service dish_special {
+  //列表
+  rpc lists (DishSpecialListsRequest) returns (DishSpecialListsResponse) {}
+}
+
+//列表请求参数
+message DishSpecialListsRequest {
+  string store_ids = 1; //门店ID组
+}
+
+//列表详情字段
+message DishSpecialListsResponse {
+  int64 code = 1;
+  string message = 2;
+  string time = 3;
+  repeated DishSpecial data = 4;
+  string request_id = 5;
+}
+
+message DishSpecial {
+  int32 id = 1; //ID
+  string name = 2;  //名称
+  string logo = 3;  //logo
+  string desc = 4;  //描述
+  int32 store_id = 5; //门店ID
+}

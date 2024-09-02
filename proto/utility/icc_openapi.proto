@@ -1,0 +1,35 @@
+/**
+ * @todo 其它
+ * @author modiarts
+ * @date 2024-01-10
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service icc_openapi {
+  //获取icc access token
+  rpc getAccessToken (IccGetIccAccessTokenRequest) returns (IccGetIccAccessTokenResponse) {}
+}
+
+//获取当前时间请求参数
+message IccGetIccAccessTokenRequest {
+  int32 reset = 1;  //是否重置 0否 1是
+}
+
+//获取当前时间响应
+message IccGetIccAccessTokenResponse {
+  int64 code = 1; //响应码
+  string message = 2; //响应message
+  string time = 3;    //请求时间
+  IccGetIccAccessTokenResponseData data = 4;    //data
+  string request_id = 5;  //请求ID
+}
+
+//获取当前时间响应data
+message IccGetIccAccessTokenResponseData {
+  string access_token = 1; //token
+  int32 expire_time = 2;  //过期时间戳
+}

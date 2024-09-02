@@ -1,0 +1,34 @@
+/**
+ * @todo 其它
+ * @author modiarts
+ * @date 2022-03-03
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service other {
+  //获取当前时间
+  rpc getDateTime (OtherGetDateTimeRequest) returns (OtherGetDateTimeResponse) {}
+}
+
+//获取当前时间请求参数
+message OtherGetDateTimeRequest {
+
+}
+
+//获取当前时间响应
+message OtherGetDateTimeResponse {
+  int64 code = 1; //响应码
+  string message = 2; //响应message
+  string time = 3;    //请求时间
+  OtherGetDateTimeResponseData data = 4;    //data
+  string request_id = 5;  //请求ID
+}
+
+//获取当前时间响应data
+message OtherGetDateTimeResponseData {
+  string date_time = 1; //时间
+}

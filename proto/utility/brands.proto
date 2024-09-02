@@ -1,0 +1,56 @@
+/**
+ * @todo 品牌
+ * @author modiarts
+ * @date 2021-12-31
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service Brands {
+    //获取列表
+    rpc lists (ListsRequest) returns (ListsResponse) {}
+
+    //获取详情
+    rpc detail (DetailRequest) returns (DetailResponse) {}
+}
+
+//获取列表所需参数
+message ListsRequest {
+}
+
+//获取列表响应字段
+message ListsResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    repeated Brand data = 4;
+    string request_id = 5;
+}
+
+//品牌对象
+message Brand {
+    int64 id = 1;
+    string name = 2;
+    string logo = 3;
+    string code = 4;
+    int32 is_aggregated = 5;
+}
+
+//获取详情所需参数
+message DetailRequest {
+    int64 brand_id = 1;
+    string brand_code = 2;
+    string brand_name = 3;
+}
+
+//获取详情响应字段
+message DetailResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    Brand data = 4;
+    string request_id = 5;
+}

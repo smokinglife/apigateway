@@ -1,0 +1,35 @@
+/**
+ * @todo 优惠标签
+ * @author modiarts
+ * @date 2023-12-06
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service tag_discount {
+  //列表
+  rpc lists (TagDiscountListsRequest) returns (TagDiscountListsResponse) {}
+}
+
+//列表请求参数
+message TagDiscountListsRequest {
+  string store_ids = 1; //门店ID组
+}
+
+//列表详情字段
+message TagDiscountListsResponse {
+  int64 code = 1;
+  string message = 2;
+  string time = 3;
+  repeated TagDiscount data = 4;
+  string request_id = 5;
+}
+
+message TagDiscount {
+  int32 id = 1; //ID
+  string name = 2;  //名称
+  int32 store_id = 3; //门店ID
+}

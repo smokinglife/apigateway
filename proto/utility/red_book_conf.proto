@@ -1,0 +1,40 @@
+/**
+ * @todo 小红书token
+ * @author modiarts
+ * @date 2023-11-03
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service red_book_conf {
+  //详情
+  rpc detail (RedBookConfDetailRequest) returns (RedBookConfDetailResponse) {}
+}
+
+//详情请求参数
+message RedBookConfDetailRequest {
+
+}
+
+//详情响应字段
+message RedBookConfDetailResponse {
+  int64 code = 1;
+  string message = 2;
+  string time = 3;
+  RedBookConfDetail data = 4;
+  string request_id = 5;
+}
+
+//详情详细内容
+message RedBookConfDetail {
+  string access_token = 1;
+  int64 access_token_time = 2;
+  string refresh_token = 3;
+  int64 refresh_token_time = 4;
+  string seller_id = 5;
+  string seller_name = 6;
+}
+

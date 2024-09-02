@@ -1,0 +1,79 @@
+/**
+ * @todo 聚合品牌
+ * @author modiarts
+ * @date 2023-12-04
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service brand_brand {
+  //列表
+  rpc lists (BrandBrandListsRequest) returns (BrandBrandListsResponse) {}
+  //详情
+  rpc detail (BrandBrandDetailRequest) returns (BrandBrandDetailResponse) {}
+}
+
+//列表请求参数
+message BrandBrandListsRequest {
+
+}
+
+//列表响应字段
+message BrandBrandListsResponse {
+  int64 code = 1;
+  string message = 2;
+  string time = 3;
+  repeated BrandBrand data = 4;
+  string request_id = 5;
+}
+
+//品牌
+message BrandBrand {
+  int32 brand_id = 1; //品牌ID
+  string brand_name = 2;  //名称
+  string brand_logo = 3;  //logo
+  string image = 4; //封面图
+  string ico = 5; //图标
+  repeated CateList cate_list = 6; //所属分类列表
+  repeated string cover = 7; //品牌介绍封面图
+  repeated string pre_register_image = 8; //品牌预注册介绍图
+  string brand_code = 9;
+}
+
+//分类
+message CateList {
+  int32 id = 1; //ID
+  string name = 2;  //名称
+  string logo = 3;  //logo
+}
+
+//详情请求参数
+message BrandBrandDetailRequest {
+  int32 brand_id = 1; //品牌ID
+}
+
+//详情响应字段
+message BrandBrandDetailResponse {
+  int64 code = 1;
+  string message = 2;
+  string time = 3;
+  BrandBrandDetail data = 4;
+  string request_id = 5;
+}
+
+//品牌
+message BrandBrandDetail {
+  int32 brand_id = 1; //品牌ID
+  string brand_name = 2;  //名称
+  string brand_logo = 3;  //logo
+  string image = 4; //封面图
+  string ico = 5; //图标
+  repeated CateList cate_list = 6; //所属分类列表
+  string content = 7;
+  repeated string cover = 8; //品牌介绍封面图
+  repeated string pre_register_image = 9; //品牌预注册介绍图
+  string brand_code = 10;
+}

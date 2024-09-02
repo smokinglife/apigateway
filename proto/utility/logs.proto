@@ -1,0 +1,28 @@
+/**
+ * @todo 日志
+ * @author modiarts
+ * @date 2021-12-31
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+
+//获取列表所需参数
+message LogRequest {
+    int64 operator_id = 1;//操作人id
+    string operator = 2;//操作人
+    int32 type = 3;//操作类型，1
+    string contents = 4;//内容
+    string title = 5;//标题
+}
+
+//获取列表响应字段
+message LogResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    string request_id = 5;
+}

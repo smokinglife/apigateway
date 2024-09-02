@@ -1,0 +1,35 @@
+/**
+ * @todo 品牌小程序
+ * @author modiarts
+ * @date 2023-12-04
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service brand_mini {
+  //列表
+  rpc lists (BrandMiniListsRequest) returns (BrandMiniListsResponse) {}
+}
+
+//列表请求参数
+message BrandMiniListsRequest {
+  int32 brand_id = 1; //品牌ID
+}
+
+//列表详情字段
+message BrandMiniListsResponse {
+  int64 code = 1;
+  string message = 2;
+  string time = 3;
+  repeated BrandMini data = 4;
+  string request_id = 5;
+}
+
+message BrandMini {
+  string type = 1; //类型
+  string platform = 2;  //平台
+  string appid = 3;  //appid
+}

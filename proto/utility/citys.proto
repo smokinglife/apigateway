@@ -1,0 +1,70 @@
+/**
+ * @todo 城市相关
+ * @author modiarts
+ * @date 2022-01-11
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service Citys {
+    //列表
+    rpc lists (CityListsRequest) returns (CityListsResponse) {}
+    //详情
+    rpc detail (CityDetailRequest) returns (CityDetailResponse) {}
+}
+
+//获取详情请求参数
+message CityDetailRequest {
+    int64 id = 1;
+    string name = 2;
+    string fullname = 3;
+    int32 parent = 4;
+}
+
+//获取城市信息响应字段
+message CityDetailResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    CityDetailResponseData data = 4;
+    string request_id = 5;
+}
+
+//获取城市信息响应字段data
+message CityDetailResponseData {
+    City info = 1;
+    City parent = 2;
+}
+
+//获取详情请求参数
+message CityListsRequest {
+
+}
+
+//获取城市信息响应字段
+message CityListsResponse {
+    int64 code = 1;
+    string message = 2;
+    string time = 3;
+    repeated City data = 4;
+    string request_id = 5;
+}
+
+message City {
+    int64 id = 1;
+    string name = 2;
+    string fullname = 3;
+    string pinyin = 4;
+    string lat = 5;
+    string lng = 6;
+    string cidx = 7;
+    string py = 8;
+    int32 level = 9;
+    int64 pid = 10;
+    int32 is_special = 11;
+    int32 area_id = 12;
+    string area_name = 13;
+}

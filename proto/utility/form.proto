@@ -1,0 +1,54 @@
+/**
+ * @todo 表单
+ * @author modiarts
+ * @date 2022-03-23
+ */
+syntax = "proto3";
+
+package UtilitySrv;
+
+option go_package = "grpc/utilitySrv";
+
+service form {
+  //详情
+  rpc detail (FormDetailRequest) returns (FormDetailResponse) {}
+
+  //验证
+  rpc check (FormCheckRequest) returns (FormCheckResponse) {}
+}
+
+//验证请求参数
+message FormCheckRequest {
+  int32 id = 1; //ID
+  string content = 2; //内容
+}
+
+//验证相应字段
+message FormCheckResponse {
+  int32 code = 1;             //响应码 1正常
+  string message = 2;         //响应message
+  string time = 3;
+  Form data = 4;   //响应data
+  string request_id = 5;
+}
+
+//详情请求参数
+message FormDetailRequest {
+  int32 id = 1; //ID
+}
+
+//详情响应字段
+message FormDetailResponse {
+  int32 code = 1;             //响应码 1正常
+  string message = 2;         //响应message
+  string time = 3;
+  Form data = 4;   //响应data
+  string request_id = 5;
+}
+
+//详情响应字段data
+message Form {
+  int32 id = 1; //ID
+  string title = 2; //标题
+  string content = 3; //内容，json格式
+}
