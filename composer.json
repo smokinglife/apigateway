@@ -1,6 +1,18 @@
 {
   "name": "smokinglife/apigateway",
-  "description": "library",
+  "description": "grpc-service",
+  "type": "library",
+  "keywords": [
+    "grpc",
+    "grpc-service"
+  ],
+  "homepage": "https://github.com/smokinglife/apigateway",
+  "authors": [
+    {
+      "name": "smokinglife",
+      "email": "978952042@qq.com"
+    }
+  ],
   "license": "Apache-2.0",
   "autoload": {
     "psr-4": {
